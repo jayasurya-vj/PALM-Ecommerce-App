@@ -8,6 +8,7 @@ mongoose.connect('mongodb://localhost:27017/palm', {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
 })
 
+var Port = process.env.PORT || 4000;
 const app = Express();
 app.set('view engine', 'ejs');
 
@@ -20,4 +21,4 @@ app.get('/test',(req,res)=>{
 });
 app.use('/',navRouter);
 app.use('/',cmsRouter);
-app.listen(4000, ()=> console.log("listening in 4000"));
+app.listen(Port, ()=> console.log("listening in ", Port));
