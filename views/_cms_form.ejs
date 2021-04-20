@@ -1,0 +1,35 @@
+
+<section class="ftco-section cms-add-product-form">
+    <div class="container">
+        <h2 class="mb-4">Enter Product details</h2>
+    <form action="/addProductForm" method="POST">
+<div class="form-group">
+  <label for="title">Title</label>
+  <input required value="<%= product.title %>" type="text" name="title" id="title" class="form-control">
+</div>
+<div class="form-group">
+  <label for="description">Description</label>
+  <textarea name="description" id="description" class="form-control"><%= product.description %></textarea>
+</div>
+<div class="form-group">
+  <label for="quantity">Quantity</label>
+  <input required value="<%= product.quantity %>" type="number" name="quantity" id="quantity" class="form-control">
+</div>
+<div class="form-group">
+  <label for="price">Price</label>
+  <input required value="<%= product.price %>" type="number" name="price" id="price" class="form-control">
+</div>
+<div class="form-group">
+  <label for="discountPercent">Discount Percent</label>
+  <input value="<%= product.discountPercent %>" type="number" min="1" max="100" name="discountPercent" id="discountPercent" class="form-control">
+</div>
+
+<a href="/" class="btn btn-secondary">Cancel</a>
+<button type="submit" class="btn btn-primary">Save</button>
+  </form>
+    </div>
+        
+    
+</section>
+
+
