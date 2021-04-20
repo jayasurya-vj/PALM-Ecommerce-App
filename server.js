@@ -1,12 +1,16 @@
 import Express from "express";
+import dotenv from "dotenv";
 import mongoose from "mongoose";
 import {navRouter} from "./routes/navigation.js";
 import {cmsRouter} from "./routes/cms.js";
 import {Product} from "./models/product.js";
 
-mongoose.connect('mongodb://localhost:27017/palm', {
+dotenv.config({path : './config.env'});
+
+const DB = process.env.DATABASE.replace("<PASSWORD>",process.env.DATABASE_PASSWORD) || 'mongodb://localhost:27017/palm';
+mongoose.connect(DB, {
   useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
-})
+}).then(con=> console.log(con.connections));
 
 var Port = process.env.PORT || 4000;
 const app = Express();
