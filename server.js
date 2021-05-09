@@ -3,7 +3,11 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import {navRouter} from "./routes/navigation.js";
 import {cmsRouter} from "./routes/cms.js";
+import {paymentRouter} from "./routes/payment.js";
 import {Product} from "./models/product.js";
+import http from "http";
+
+
 
 dotenv.config({path : './config.env'});
 
@@ -17,6 +21,7 @@ const app = Express();
 app.set('view engine', 'ejs');
 
 
+
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.static("public/"));
 
@@ -25,4 +30,6 @@ app.get('/test',(req,res)=>{
 });
 app.use('/',navRouter);
 app.use('/',cmsRouter);
-app.listen(Port, ()=> console.log("listening in ", Port));
+app.use('/',paymentRouter);
+var http1 = http.Server(app);
+http1.listen(Port, '0.0.0.0', ()=> console.log("listening in ", Port));

@@ -43,7 +43,7 @@ navRouter.get('/cart.html',(req,res)=>{
 })
 
 navRouter.get('/checkout.html',(req,res)=>{
-    res.render("checkout");
+    res.redirect("/order");
 })
 
 navRouter.get('/about.html',(req,res)=>{
@@ -60,5 +60,9 @@ navRouter.get('/contact.html',(req,res)=>{
 
 navRouter.get('/blog-single.html',(req,res)=>{
     res.render("blog-single");
+})
+
+navRouter.get('/',(req,res)=>{
+    res.redirect('/index.html');
 })
 
