@@ -15,8 +15,11 @@ navRouter.get('/shop1.html',(req,res)=>{
 
 navRouter.get('/shop.html',(req,res)=>{
     Product.find({}, function(err, prods) {
-        res.render("shop", {products : prods});
+        if(!!prods){
+            res.render("shop", {products : prods});
+        }
     });
+    // res.redirect('/index.html');
 })
 
 navRouter.get('/wishlist.html',(req,res)=>{
@@ -29,13 +32,15 @@ navRouter.get('/product-single1.html',(req,res)=>{
 
 navRouter.get('/product-single.html',(req,res)=>{
     console.log(req.query.title);
-    var title = req.query.title;
-    Product.find({title : ''+req.query.title}, function(err, product) {
-        console.log(product);
-        res.render("product-single",{product:product[0]});
-    });
-    
-    
+    let title = req.query.title;
+    if(!!title){
+        Product.find({title : ''+req.query.title}, function(err, product) {
+            console.log(product);
+            if(!!product){
+                res.render("product-single",{product:product[0]});
+            }
+        });
+    }
 })
 
 navRouter.get('/cart.html',(req,res)=>{
@@ -62,7 +67,23 @@ navRouter.get('/blog-single.html',(req,res)=>{
     res.render("blog-single");
 })
 
+// navRouter.get('/login.html',(req,res)=>{
+
+//     console.log(req.query.tab);
+//     let tab = req.query.tab;
+//         console.log(tab);
+//         if(!!tab && (tab=="login" || tab == "signup")){
+//             res.render("login",{tab:tab, user: new User()}); 
+//             // , csrfToken: req.csrfToken(
+//         }else{
+//             res.redirect('/index.html');
+//         }
+        
+// })
+
 navRouter.get('/',(req,res)=>{
     res.redirect('/index.html');
 })
+
+
 
