@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt-nodejs";
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -14,6 +15,14 @@ const userSchema = new mongoose.Schema({
     default: Date.now
   }
 })
+
+userSchema.methods.encryptPassword = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);  
+};
+
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);  
+};
 
 const User =  mongoose.model('User', userSchema);
 
