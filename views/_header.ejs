@@ -25,6 +25,13 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+
+	<style>
+		.ftco-navbar-light .navbar-nav > .nav-item.active > a {
+			color: #82ae46 !important;
+		}
+	</style>
+
   </head>
   <body class="goto-here">
 		<div class="py-1 bg-primary">
@@ -57,7 +64,7 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
 	          <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
@@ -72,7 +79,7 @@
 			   <!-- <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li> -->
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
 			  <% if(!login) {%>
-	          <li class="nav-item"><a href="login.html?tab=login" class="nav-link">Login/Signup</a></li>
+	          <li class="nav-item"><a href="login.html" class="nav-link">Login/Signup</a></li>
 			  <%} else {%>
 			  <li class="nav-item"><a href="logout" class="nav-link">Logout</a></li>
 			  <%}%>

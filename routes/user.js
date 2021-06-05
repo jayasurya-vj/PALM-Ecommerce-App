@@ -57,11 +57,13 @@ loginRouter.get('/login.html',(req,res)=>{
     let messages = req.flash('error');
     console.log(messages);
    let tab = req.query.tab;
-       if(!!tab && (tab=="login" || tab == "signup")){
-           res.render("login",{tab:tab, csrfToken: req.csrfToken(), messages: messages});          
-        }else{
-           res.redirect('/index.html');
-       }
+   if(!tab || !(tab=="login" || tab == "signup")){ tab="login"; }
+   res.render("login",{tab:tab, csrfToken: req.csrfToken(), messages: messages});
+      //  if(!!tab && (tab=="login" || tab == "signup")){
+      //      res.render("login",{tab:tab, csrfToken: req.csrfToken(), messages: messages});          
+      //   }else{
+      //      res.redirect('/index.html');
+      //  }
        
  });
  

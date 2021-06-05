@@ -112,3 +112,13 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
         <script src="js/google-map.js"></script>
         <script src="js/main.js"></script>
+
+        
+	<script>
+		$(document).ready(function(){
+			let active_tab = location.pathname.substr(1);
+	$('ul.navbar-nav').find('a[href="'+active_tab+'"]').parent().addClass('active');
+  console.log(active_tab)
+		         
+		});
+	</script>

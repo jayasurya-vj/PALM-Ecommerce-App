@@ -205,7 +205,8 @@ h1, h2, h3, h4, h5,
 			}
 			&.active {
 				> a {
-					color: $black;
+					// color: $black;
+					color: $primary!important;
 					@include media-breakpoint-down(md){
 						color: $white;
 					}
@@ -1693,12 +1694,12 @@ textarea.form-control {
 				color: $white;
 				@include transition(.3s);
 			}
-			// &.active{
-			// 	background: $primary;
-			// 	span{
-			// 		color: $white;
-			// 	}
-			// }
+			&.active{
+				background: $primary;
+				span{
+					color: $white;
+				}
+			}
 		}
 		.media-body{
 			width: 100%;
