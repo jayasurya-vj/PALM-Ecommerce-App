@@ -22,9 +22,7 @@ navRouter.get('/shop.html',(req,res)=>{
     // res.redirect('/index.html');
 })
 
-navRouter.get('/wishlist.html',(req,res)=>{
-    res.render("wishlist");
-})
+
 
 navRouter.get('/product-single1.html',(req,res)=>{
     res.render("product-single-old");
@@ -43,13 +41,6 @@ navRouter.get('/product-single.html',(req,res)=>{
     }
 })
 
-navRouter.get('/cart.html',(req,res)=>{
-    res.render("cart");
-})
-
-navRouter.get('/checkout.html',(req,res)=>{
-    res.redirect("/order");
-})
 
 navRouter.get('/about.html',(req,res)=>{
     res.render("about");
@@ -84,6 +75,10 @@ navRouter.get('/blog-single.html',(req,res)=>{
 navRouter.get('/',(req,res)=>{
     res.redirect('/index.html');
 })
+
+
+
+
 
 
 

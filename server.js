@@ -4,12 +4,10 @@ import mongoose from "mongoose";
 import {navRouter} from "./routes/navigation.js";
 import {cmsRouter} from "./routes/cms.js";
 import {paymentRouter} from "./routes/payment.js";
+import {loginRouter} from "./routes/user.js";
 import http from "http";
-import csurf from "csurf";
 import session from "express-session";
-import flash from "connect-flash";
-import  passport  from "./config/passport.js"
-import { check } from "express-validator";
+
 
 
 
@@ -26,49 +24,25 @@ app.set('view engine', 'ejs');
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.static("public/"));
 // User 
-app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false}));
-app.use(csurf());
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({secret: 'mysupersecret', cookie: {
+  maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+}, resave: false, saveUninitialized: false}));
 
-const validate = ()=>[
-  check('email').notEmpty().withMessage('Enter E-mail').isEmail().withMessage('Enter a valid E-mail'),
-  check('password').notEmpty().withMessage('Enter Password').isLength({ min: 5 })
-      .withMessage('Enter Password with at least 5 characters')
-      .matches(/\d/).withMessage('Password must contain a number')
-]
    
 
-app.use('/',navRouter);
-app.use('/',cmsRouter);
-app.use('/',paymentRouter);
-
-app.get('/login.html',(req,res)=>{
-   let messages = req.flash('error');
-   console.log(messages);
-  let tab = req.query.tab;
-      if(!!tab && (tab=="login" || tab == "signup")){
-          res.render("login",{tab:tab, csrfToken: req.csrfToken(), messages: messages});          
-       }else{
-          res.redirect('/index.html');
-      }
-      
+app.use(function(req, res, next) {
+  res.locals.url = req.originalUrl;
+  res.locals.login = req.isAuthenticated();
+  next();
 });
 
-app.post('/login',validate(),passport.authenticate('local.signin', {
-  successRedirect: '/index.html',
-  failureRedirect: '/login.html?tab=login',
-  failureFlash: true
-}));
 
-app.post('/signup',
-validate(),
- passport.authenticate('local.signup', {
-    successRedirect: '/index.html',
-    failureRedirect: '/login.html?tab=signup',
-    failureFlash: true
-}));
+
+// app.use('/',paymentRouter);
+// app.use('/',cmsRouter);
+// app.use('/',navRouter);
+app.use('/',loginRouter);
+
 
 
 app.get('/test',(req,res)=>{
